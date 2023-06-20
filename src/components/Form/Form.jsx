@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { addContact } from 'redux/store';
+import { addContact } from 'redux/slice';
 import { useSelector, useDispatch } from 'react-redux';
 
 // import { nanoid } from 'nanoid';
