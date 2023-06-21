@@ -1,16 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { addContact } from 'redux/slice';
-import { useSelector, useDispatch } from 'react-redux';
-
 // import { nanoid } from 'nanoid';
 // ==================Hooks===================
 const Form = props => {
-  // const { onSubmit } = props;
-  // useState*
+  const { onSubmit } = props;
+  //useState*
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // useState*
+  //useState*
 
   const handleInputChange = evt => {
     const {
@@ -19,63 +16,51 @@ const Form = props => {
     if (name === 'name') setName(value);
     else if (name === 'number') setNumber(value);
   };
-  const dispatch = useDispatch();
+
   const handleFormSubmitAddContact = evt => {
     evt.preventDefault();
-    dispatch(
-      addContact({
-        name,
-        number,
-      })
-    );
-    // onSubmit({
-    //   name,
-    //   number,
-    // });
-    // reset();
+    onSubmit({
+      name,
+      number,
+    });
+    reset();
   };
 
-  // const reset = () => {
-  //   setName('');
-  //   setNumber('');
-  // };
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
 
-  // handleFormSubmitAddContact
   return (
-    <>
-      <button type="button" onClick={handleFormSubmitAddContact}>
-        Button
-      </button>
-      <form onSubmit={handleFormSubmitAddContact}>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={name}
-            onChange={handleInputChange}
-          />
-        </label>
+    <form onSubmit={handleFormSubmitAddContact}>
+      <label>
+        Name
+        <input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          value={name}
+          onChange={handleInputChange}
+        />
+      </label>
 
-        <label>
-          Number
-          <input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            value={number}
-            onChange={handleInputChange}
-          />
-        </label>
+      <label>
+        Number
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          value={number}
+          onChange={handleInputChange}
+        />
+      </label>
 
-        <input type="submit" />
-      </form>
-    </>
+      <input type="submit" />
+    </form>
   );
 };
 

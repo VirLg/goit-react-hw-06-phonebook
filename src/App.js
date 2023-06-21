@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Section } from './components/Section/Section';
 import { Contact } from './components/Contats/Contact';
@@ -12,11 +13,19 @@ import { Filter } from './components/FilterContact/FilterContact';
 import Form from './components/Form/Form';
 
 // ==========Hook============
+
 const App = () => {
+  const selector = useSelector(state => state);
+  console.log('selector', selector);
+  const dispatch = useDispatch();
   //*useState
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
   //*useState
+
+  // const handleClick = () => {
+  //   dispatch({ type: 'addContact', payload: { name: 'ol', number: '555' } });
+  // };
   useEffect(() => {
     if (localStorage.contacts) {
       const jsonContacts = localStorage.getItem('contacts');
@@ -31,12 +40,15 @@ const App = () => {
       return Notify.failure('Sorry, this contact already in your list.');
     } else {
       const { name, number } = data;
-      const contact = {
-        id: nanoid(),
-        name,
-        number,
-      };
-      setContacts(prevState => [contact, ...prevState]);
+      dispatch({
+        type: 'addContact',
+        payload: {
+          id: nanoid(),
+          name,
+          number,
+        },
+      });
+      // dispatch(prevState => [contact, ...prevState]);
     }
   };
   useEffect(() => {
