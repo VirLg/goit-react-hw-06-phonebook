@@ -1,11 +1,14 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
 
-const stapSlice = createSlice({
+const stepSlice = createSlice({
   name: 'step',
-  initialState: 0,
-  redusers: {
-    stepAct: (state, action) => {
-      return { ...state, step: action.payload };
+  initialState: {},
+  reducers: {
+    stepAct(state, action) {
+      return { ...state, name: action.payload };
+    },
+    stepDef: state => {
+      return state;
     },
   },
 });
@@ -13,14 +16,15 @@ const stapSlice = createSlice({
 const contactSlice = createSlice({
   name: 'contact',
   initialState: [],
-  redusers: {
-    addContact: (state, action) => {
-      return { contact: [...state, action.payload] };
+  reducers: {
+    addContact(state, action) {
+      return [...state, action.payload];
     },
   },
 });
 
-export const reducerStap = stapSlice.reducer;
+export const reducerStep = stepSlice.reducer;
+export const { stepAct } = stepSlice.actions;
+
 export const reducerContact = contactSlice.reducer;
-export const { stepAct } = stapSlice.actions;
 export const { addContact } = contactSlice.actions;

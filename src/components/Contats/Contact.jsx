@@ -1,11 +1,15 @@
+import { useSelector } from 'react-redux';
+
 export const Contact = function (props) {
   const { contacts, onDeleteContact } = props;
   console.log(props);
+  const reduxContact = useSelector(({ contact }) => contact);
+  console.log('redaxContact', reduxContact);
 
   return (
     <ul>
-      {contacts !== [] &&
-        contacts.map(({ id, name, number }) => (
+      {reduxContact !== [] &&
+        reduxContact.map(({ id, name, number }) => (
           <li key={id}>
             <span>{name}</span>
             <span>{number}</span>

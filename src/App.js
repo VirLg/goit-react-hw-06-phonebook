@@ -19,10 +19,11 @@ import { addContact } from 'components/Store/stepSlice';
 // ==========Hook============
 
 const App = () => {
-  const { contact } = useSelector(getContactSelector);
-  const { step } = useSelector(getStepSelector);
-  console.log('contact', contact);
-  console.log('step', step);
+  const sate = useSelector(getContactSelector);
+  // console.log(sate);
+  // const state.setStep = useSelector(getStepSelector);
+  // console.log('contact', contact);
+  // console.log('step', state);
   const dispatch = useDispatch();
   //*useState
   const [contacts, setContacts] = useState([]);
@@ -45,15 +46,13 @@ const App = () => {
     if (data && contacts.find(el => el.name === data.name)) {
       return Notify.failure('Sorry, this contact already in your list.');
     } else {
-      const { name, number } = data;
-
-      // const createContact = createAction('addContact');
+      // const { name, number } = data;
 
       dispatch(
         addContact({
           id: nanoid(),
-          name,
-          number,
+          name: data.name,
+          number: data.number,
         })
       );
     }

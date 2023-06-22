@@ -1,6 +1,8 @@
 import { createStore } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { reducer } from './reducer';
+export const store = configureStore({ reducer });
+
 // import { reducer } from './reducer';
 
 // const reducer = (state, action) => {
@@ -15,9 +17,3 @@ import { reducer } from './reducer';
 //   }
 // };
 // export const store = createStore(reducer, { contact: [], step: 1 });
-
-export const store = configureStore({ reducer });
-
-// store.dispatch({ type: 'addContact', payload: { name: 'ol', number: '555' } });
-// // export const store = configureStore({ reducer });
-// console.log(store.getState());

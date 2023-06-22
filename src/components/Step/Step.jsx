@@ -6,7 +6,7 @@ export const Step = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const value = e.target.elements[0].value;
-
+    console.log(value);
     // dispatch({ type: 'setStep', payload: value });
     // const setStepAction = value => {
     //   return { type: 'setStep', payload: value };
@@ -17,9 +17,11 @@ export const Step = () => {
     // }
     // dispatch(createAction(stepActFn.setStep))
     // /======================
-    // const stepAct = createAction('setStep'); це не потрібно, бо slice
-
+    // const stepAct = createAction('setStep');
+    // ; це не потрібно, бо slice
+    console.log(stepAct.prototype);
     dispatch(stepAct(value));
+    console.log(dispatch(stepAct(value)));
   };
   return (
     <form onSubmit={handleSubmit}>
