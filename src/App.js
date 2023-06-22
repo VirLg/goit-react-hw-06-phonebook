@@ -4,19 +4,24 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Step } from './components/Step/Step';
 import { Section } from './components/Section/Section';
 import { Contact } from './components/Contats/Contact';
-
+import { createAction } from '@reduxjs/toolkit';
 import { Filter } from './components/FilterContact/FilterContact';
-
+import {
+  getContactSelector,
+  getStepSelector,
+} from './components/Store/selectors';
 import Form from './components/Form/Form';
 
 // ==========Hook============
 
 const App = () => {
-  const selector = useSelector(state => state);
-  console.log('selector', selector);
+  const { contact } = useSelector(getContactSelector);
+  const { step } = useSelector(getStepSelector);
+  console.log('contact', contact);
+  console.log('step', step);
   const dispatch = useDispatch();
   //*useState
   const [contacts, setContacts] = useState([]);
@@ -40,14 +45,16 @@ const App = () => {
       return Notify.failure('Sorry, this contact already in your list.');
     } else {
       const { name, number } = data;
-      dispatch({
-        type: 'addContact',
-        payload: {
+
+      const createContact = createAction('addContact');
+
+      dispatch(
+        createContact({
           id: nanoid(),
           name,
           number,
-        },
-      });
+        })
+      );
       // dispatch(prevState => [contact, ...prevState]);
     }
   };
@@ -71,6 +78,8 @@ const App = () => {
   return (
     <>
       <Section>
+        <Step />
+
         <h1>Phonebook</h1>
         <Form onSubmit={formSubmitHendler} />
       </Section>
