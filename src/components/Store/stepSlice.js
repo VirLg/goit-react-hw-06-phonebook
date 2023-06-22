@@ -20,6 +20,9 @@ const contactSlice = createSlice({
     addContact(state, action) {
       return [...state, action.payload];
     },
+    removeContact(state, action) {
+      return [...action.payload];
+    },
   },
 });
 
@@ -27,4 +30,4 @@ export const reducerStep = stepSlice.reducer;
 export const { stepAct } = stepSlice.actions;
 
 export const reducerContact = contactSlice.reducer;
-export const { addContact } = contactSlice.actions;
+export const { addContact, removeContact } = contactSlice.actions;
