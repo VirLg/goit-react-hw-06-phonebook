@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { createAction } from '@reduxjs/toolkit';
+import { stepAct } from 'components/Store/stepSlice';
 export const Step = () => {
   const dispatch = useDispatch();
   const handleSubmit = e => {
@@ -16,7 +17,7 @@ export const Step = () => {
     // }
     // dispatch(createAction(stepActFn.setStep))
     // /======================
-    const stepAct = createAction('setStep');
+    // const stepAct = createAction('setStep'); це не потрібно, бо slice
 
     dispatch(stepAct(value));
   };

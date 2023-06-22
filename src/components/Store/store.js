@@ -14,9 +14,9 @@ import { reducer } from './reducer';
 //       return state;
 //   }
 // };
-export const store = createStore(reducer, { contact: [], step: 1 });
+// export const store = createStore(reducer, { contact: [], step: 1 });
 
-// export const store = configureStore({ reducer });
+export const store = configureStore({ reducer });
 
 // store.dispatch({ type: 'addContact', payload: { name: 'ol', number: '555' } });
 // // export const store = configureStore({ reducer });

@@ -14,6 +14,7 @@ import {
   getStepSelector,
 } from './components/Store/selectors';
 import Form from './components/Form/Form';
+import { addContact } from 'components/Store/stepSlice';
 
 // ==========Hook============
 
@@ -46,16 +47,15 @@ const App = () => {
     } else {
       const { name, number } = data;
 
-      const createContact = createAction('addContact');
+      // const createContact = createAction('addContact');
 
       dispatch(
-        createContact({
+        addContact({
           id: nanoid(),
           name,
           number,
         })
       );
-      // dispatch(prevState => [contact, ...prevState]);
     }
   };
   useEffect(() => {
