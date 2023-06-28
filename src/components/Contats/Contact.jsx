@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { removeContact } from 'components/Store/stepSlice';
-export const Contact = function (props) {
-  console.log(props);
-  const reduxContact = useSelector(({ contact }) => contact);
+import { removeContact } from 'components/Store/contactSlice';
+import { contactSelector } from 'components/Store/selectors';
+export const Contact = function () {
   const dispatch = useDispatch();
-  console.log('redaxContact', reduxContact);
+  const reduxContact = useSelector(contactSelector);
+
   const reduxDeleteContact = id => {
     dispatch(removeContact(reduxContact.filter(el => el.id !== id)));
   };

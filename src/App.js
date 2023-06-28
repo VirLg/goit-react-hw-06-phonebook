@@ -14,12 +14,13 @@ import {
   getStepSelector,
 } from './components/Store/selectors';
 import Form from './components/Form/Form';
-import { addContact } from 'components/Store/stepSlice';
+import { addContact, filterContact } from 'components/Store/contactSlice';
 
 // ==========Hook============
 
 const App = () => {
   const sate = useSelector(getContactSelector);
+
   // console.log(sate);
   // const state.setStep = useSelector(getStepSelector);
   // console.log('contact', contact);
@@ -57,22 +58,31 @@ const App = () => {
       );
     }
   };
-  useEffect(() => {
-    if (contacts.length > 0)
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
-  const DeleteContact = ContactId => {
-    if (contacts !== []) {
-      setContacts(prevState => prevState.filter(el => el.id !== ContactId));
+  const handleFilterContact = e => {
+    // console.log(value);
+    //     const filterContact = useSelector();
+    //     dispatch(filterContact());
+    console.log(e.target.value);
+    if (e.target.value) {
     }
+    dispatch(filterContact(e.target.value));
   };
+  // const value = useSelector(handleFilterContact);
+  // useEffect(() => {
+  //   if (contacts.length > 0)
+  //     localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
-  const handleSearchInput = evt => setFilter(evt.target.value);
+  // const DeleteContact = ContactId => {
+  //   if (contacts !== []) {
+  //     setContacts(prevState => prevState.filter(el => el.id !== ContactId));
+  //   }
+  // };
 
-  const visibleContacts = contacts.filter(el =>
-    el.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // const handleSearchInput = evt => setFilter(evt.target.value);
+
+  const visibleContacts = true;
 
   return (
     <>
@@ -85,9 +95,9 @@ const App = () => {
 
       <Section>
         <h2>Contacts</h2>
-        <Filter value={filter} onChange={handleSearchInput} />
+        <Filter onChange={handleFilterContact} />
 
-        <Contact contacts={visibleContacts} onDeleteContact={DeleteContact} />
+        <Contact contacts={visibleContacts} />
       </Section>
     </>
   );

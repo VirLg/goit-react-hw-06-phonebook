@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { createAction } from '@reduxjs/toolkit';
-import { stepAct } from 'components/Store/stepSlice';
+import { stepAct } from 'components/Store/contactSlice';
 export const Step = () => {
   const dispatch = useDispatch();
   const handleSubmit = e => {

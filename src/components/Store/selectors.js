@@ -1,7 +1,8 @@
+export const contactSelector = state => state.contact;
+
 export const getContactSelector = state => {
-  console.log('state', state);
-  if (!state) {
-    return state.contact;
+  if (!state.contact) {
+    return;
   }
   state.contact.map(({ name }) => console.log(name));
   //   if (data && contacts.find(el => el.name === data.name)) {
@@ -12,4 +13,8 @@ export const getContactSelector = state => {
   // }
 };
 //виконати сортування по масиву контактів
+export const filerSelector = state => {
+  console.log(state.filter);
+};
+
 export const getStepSelector = state => console.log(state.stepAct);
